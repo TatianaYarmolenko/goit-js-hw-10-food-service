@@ -1,60 +1,60 @@
-// const user= {
-//    name: 'Mango',
-//    age: 2,
-// };
- 
-// console.log(JSON.stringify(user));
-
-// const saveUserData = '{"name":"Mango","age":2}';
-
-// console.log(JSON.parse(saveUserData));
-
-// console.log(localStorage);
-
-// localStorage.setItem('my-data', JSON.stringify({ name: "Mango", age: 2 }));
-
-// const savedData = localStorage.getItem('my-data');
-// console.log('savedData', savedData);
-
-// const parsedData = JSON.parse(savedData);
-// console.log('parsedData', parsedData);
-
-import throttle from 'lodash.throttle';
+import colorCardTpl from './templates/color-card.hbs';
+import colors from './colors.json';
 import './css/common.css';
-import './css/feedback-form.css';
+import './css/colorpicker.css';
 
-const STORAGE_KEY = 'feedback-msg';
+console.log(colorCardTpl);
 
-const refs = {
-  form: document.querySelector('.js-feedback-form'),
-  textarea: document.querySelector('.js-feedback-form  textarea'),
-};
+const paletteContainer = document.querySelector('.js-palette');
+const cardsMarkup = createColorCardsMarkup(colors);
 
-// populateMessage();
+paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 
-refs.form.addEventListener('submit', onFormSubmit);
-refs.textarea.addEventListener('input', throttle(onTextareaInput, 1000));
+paletteContainer.addEventListener('click', onPaletteContainerClick);
 
-function onFormSubmit(evt) {
-   evt.preventDefault();
- 
-   console.log('Отправляем форму');
-   localStorage.removeItem(STORAGE_KEY);
-   evt.currentTarget.reset();
- }
-
- function onTextareaInput(evt) {
-  const value = evt.target.value;
-
-  localStorage.setItem(STORAGE_KEY, message);
+function createColorCardsMarkup(colors) {
+  return colors
+    .map(({ hex, rgb }) => {
+      return `
+      <div class="color-card">
+        <div class="color-swatch" data-hex="${hex}" data-rgb="${rgb}" style="background-color: ${hex}"></div>
+        <div class="color-meta">
+          <p>HEX: ${hex}</p>
+          <p>RGB: ${rgb}</p>
+        </div>
+      </div>
+    `;
+    })
+    .join('');
 }
 
- function populateTextarea() {
-  const savedMessage = localStorage.getItem(STORAGE_KEY);
+function onPaletteContainerClick(evt) {
+  const isColorSwatchEl = evt.target.classList.contains('color-swatch');
 
-  if (savedMessage) {
-    console.log(savedMessage);
-    refs.textarea.value = savedMessage;
+  if (!isColorSwatchEl) {
+    return;
+  }
+
+  const swatchEl = evt.target;
+  const parentColorCard = swatchEl.closest('.color-card');
+
+  removeActiveCardClass();
+  addActiveCardClass(parentColorCard);
+  setBodyBgColor(swatchEl.dataset.hex);
+}
+
+function setBodyBgColor(color) {
+  document.body.style.backgroundColor = color;
+}
+
+function removeActiveCardClass() {
+  const currentActiveCard = document.querySelector('.color-card.is-active');
+
+  if (currentActiveCard) {
+    currentActiveCard.classList.remove('is-active');
   }
 }
- 
+
+function addActiveCardClass(card) {
+  card.classList.add('is-active');
+}
