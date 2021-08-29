@@ -1,7 +1,15 @@
+import '../styles.css';
+import menu from '../menu.json';
 import cardsTpl from '../templates/template.hbs';
 
-console.log(cardsTpl({[]}));
+const galleryRef = document.querySelector('.js-menu');
 
-function createCardsMarkup(cards) {
-   return cards.map(cardsTpl).loin('');
+const markup = itemsTemplate(menu);
+galleryRef.insertAdjacentHTML('beforebegin', markup);
+
+
+function itemsTemplate(menu) {
+   return menu.map(cardsTpl).join('');
 }
+
+const body = document.querySelector('body');
