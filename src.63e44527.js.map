@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.js"],"names":["console","log","localStorage"],"mappings":";AAIAA,QAAQC,IAAIC","file":"src.63e44527.js","sourceRoot":"../src","sourcesContent":["// import \"./js/localstorage.js\"\n\n\n\nconsole.log(localStorage);\n\n"]}
