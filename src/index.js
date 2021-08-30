@@ -1,2 +1,2 @@
-import {cards} from "./js/card";
-import {themes} from './js/theme';
+import './js/card.js';
+import './js/theme.js';

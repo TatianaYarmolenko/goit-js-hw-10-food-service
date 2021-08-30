@@ -1,5 +1,5 @@
 import menuData from '../menu.json';
-import menuItemsTemplate from '../templates/template';
+import menuItemsTemplate from '../templates/template.hbs';
 
 const menuRef = document.querySelector('.js-menu');
 
