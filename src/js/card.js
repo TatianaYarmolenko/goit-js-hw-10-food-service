@@ -12,3 +12,15 @@ galleryRef.insertAdjacentHTML('beforebegin', markup);
 // }
 
 // const body = document.querySelector('body');
+// const toolbox = document.querySelector("#theme-switch-toggle");
+
+// toolbox.addEventListener("change", (e) => {
+//    body.classList.toggle("dark-theme")
+//    console.log(localStorage.getItem("class"))
+//    if (localStorage.getItem("class")) {
+//        localStorage.removeItem("class")
+//    } else {
+//        localStorage.setItem("class", "dark-theme")
+//        toolbox.checked = true;
+//    }
+// });
