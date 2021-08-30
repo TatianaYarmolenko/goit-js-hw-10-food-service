@@ -1,30 +1,38 @@
 const themeToggleRef = document.querySelector('[id="theme-switch-toggle"]');
 
 const Theme = {
-   LIGHT: 'light-theme',
-   DARK: 'dark-theme',
- };
+    LIGHT: 'light-theme',
+    DARK: 'dark-theme',
+};
 
- export default theme;
+saveUserThemeWhenPageRefresh();
 
+themeToggleRef.addEventListener('change', onThemeChange);
 
- function createMenu(menuData) {
-     return menuData.map(itemsTemplate).join('');
-  }
-  
-  const body = document.querySelector('body');
-  const toolbox = document.querySelector("#theme-switch-toggle");
-  
+function onThemeChange() {
+    replaceSelectorsOnBodyRef();
+}
 
- toolbox.addEventListener("change", (e) => {
-   body.classList.toggle("dark-theme")
-   console.log(localStorage.getItem("class"))
-   if (localStorage.getItem("class")) {
-       localStorage.removeItem("class")
-   } else {
-       localStorage.setItem("class", "dark-theme")
-       toolbox.checked = true;
-   }
-});
+function replaceSelectorsOnBodyRef() {
+    if (document.body.classList.contains(Theme.LIGHT)) {
+        document.body.classList.replace(Theme.LIGHT, Theme.DARK);
+        saveUserThemeInLocalStorage(Theme.DARK);
+        return;
+    }
 
+    document.body.classList.replace(Theme.DARK, Theme.LIGHT);
+    saveUserThemeInLocalStorage(Theme.LIGHT);
+}
 
+function saveUserThemeInLocalStorage(theme) {
+    localStorage.setItem('theme', theme);
+}
+
+function saveUserThemeWhenPageRefresh() {
+    const userTheme = localStorage.getItem('theme');
+
+    if (userTheme === Theme.DARK) {
+        document.body.classList.replace(Theme.LIGHT, Theme.DARK);
+        themeToggleRef.checked = true;
+    }
+}

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-10-food-service/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-10-food-service/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -14,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TatianaYarmolenko/parcel-project-template/issues"
+    "url": "https://github.com/TatianaYarmolenko/goit-js-hw-10-food-service/issues"
   },
   "homepage": "https://github.com/TatianaYarmolenko/goit-js-hw-10-food-service",
   "devDependencies": {

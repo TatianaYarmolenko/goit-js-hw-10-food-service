@@ -1,7 +1,8 @@
-import '../styles.css';
 import menuData from '../menu.json';
-import itemsTemplate from '../templates/template.hbs';
+import menuItemsTemplate from '../templates/template';
 
-const galleryRef = document.querySelector('.js-menu');
-const markup = itemsTemplate(menuData);
-galleryRef.insertAdjacentHTML('beforebegin', markup);
+const menuRef = document.querySelector('.js-menu');
+
+const menuItemsMarkup = menuItemsTemplate(menuData);
+
+menuRef.innerHTML = menuItemsMarkup;
