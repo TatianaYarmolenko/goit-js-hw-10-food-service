@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TatianaYarmolenko/goit-js-hw-10-food-service.git"
+    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TatianaYarmolenko/goit-js-hw-10-food-service/issues"
+    "url": "https://github.com//goitacademy/parcel-project-template/issues"
   },
   "homepage": "https://github.com/TatianaYarmolenko/goit-js-hw-10-food-service",
   "devDependencies": {
